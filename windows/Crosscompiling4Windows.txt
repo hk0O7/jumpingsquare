@@ -1,0 +1,7 @@
+- Install mingw-gcc (for 32-bit Windows):
+	apt-get install gcc-mingw-w64-i686
+- Download SDL-devel-1.2 for Windows and MinGW:
+	https://libsdl.org/release/SDL-devel-1.2.15-mingw32.tar.gz
+- Unpack contents at /usr/i686-w64-mingw32/
+- Made a simple script (build4windows.sh) with a MinGW GCC command as follows:
+	i686-w64-mingw32-gcc -o program.exe program.c -std=c99 -lSDL -I"$SDL_INCLUDE_PATH"

@@ -1,0 +1,76 @@
+- Movement upwards has black square drawing lagged. FIXED
+	The problem resides in the variables for SDL_UpdateRect()
+
+- Make continuous left/right movement. DONE
+
+- Add acceleration for left/right movement. DONE
+
+- Add deceleration for left/right movement. DONE
+
+- Does not respond to left/right while decelerating. DONE
+
+- Fix glitch when an arrow is pressed before depressing the other. DONE
+
+- Make all boundaries work. DONE
+	- Use variable for size (100). DONE
+
+- Disable manual up/down movement. DONE
+
+- Tweak turning deceleration. DONE
+	- Changed the ratio from 2 to 2.2.
+
+- Make the square bounce off a boundary (little effect). DONE
+
+- Make the jumping square actually jump. DONE
+
+- Implement bouncing aticks_endr jumping. DONE
+
+- Add half-frame motion blur: DONE
+	- Function to draw square (to memory) in the desired tone. DONE
+		- Made *screen and event global(!)
+	- New variables for previous-previous position (square_ppx, square_ppy). DONE
+	- Make interpolated position variables (square_ix, square_iy). DONE
+	- Variables for previous interpolated positions (square_pix, square_piy). DONE
+	- Draw black square twice, for the previous frame, and for the previous interpolated frame. DONE
+	- Interpolated position -> Draw grey (127). DONE
+	- Previous position and previous interpolated position -> Draw black (0). DONE
+	- Calculate render area using the three saved positions (x/y, px/py, ppx/ppy) DONE
+
+- Fix motion blur issue w/ selective rendering. DONE
+	When turning in both axis, que new black area is not updated, leaving a white trail of the square.
+	It should update for:
+		- Axis
+		- Previous frame
+		- Previous-previous: If equal to axis, everything is equal; use axis.
+	The update area should fit all three. Always cover from the lowest to highest values.
+
+- Make a script/way to compile for Windows. DONE
+
+- Make it respond to closing the window. DONE
+	- Made it close with Esc too.
+
+- Make the Up arrow key jump too. DONE
+
+- Add window title '"Jumping Square" (by hk)'. DONE
+
+- Make the square decelerate slower aticks_endr bouncing off the side. DONE
+	- Changed the bounce force quoeficient from 1.2 to 1.1.
+
+- Implement precise frame timing. DONE
+	- Added variables:
+		- FRAMERATE
+		- frametime_target
+		- frametime_real
+		- (frametime ->) framedelay
+		- ticks_start
+		- ticks_end
+	- Removed variable frametime
+
+- Add DEBUG global variable to enable or disable output to console. DONE
+
+- Make the square have less friction on air. DONE
+	- Add/use deceleration_ground and deceleration_air global variables.
+	- Add/use gravity variable (vertical acceleration).
+
+- Make the DEBUG variable into a pre-processor macro. DONE
+
